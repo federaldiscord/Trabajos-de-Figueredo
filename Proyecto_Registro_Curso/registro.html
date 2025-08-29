@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Registro | Curso - Asari Team</title>
+  <link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/b/b1/Loading_icon.gif" type="image/x-icon" />
+  <link rel="stylesheet" href="styles.css"/>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
+</head>
+<body>
+    <h1 class="title">Registro al curso de Desarrollo Web</h1>
+    <div class="header">
+        <ul class="nav">
+            <a href="index.html">Inicio</a>
+            <a href="horario.html">Horarios</a>
+            <a href="registro.html">Registro</a>
+            <a href="recursos.html">Recursos</a>
+        </ul>
+    </div>
+    <hr class="separador">
+    <div class="container">
+        <form class="formulario">
+            <h2 class="titu-form">Formulario de Registro</h2>
+            <label for="nombre" class="contenido">Nombre Completo:</label>
+            <input type="text" id="nombre" name="nombre" required>
+<br>
+            <label for="email" class="contenido">Correo Electrónico:</label>
+            <input type="email" id="email" name="email" required>
+<br>
+            <label for="telefono" class="contenido">Número de Teléfono:</label>
+            <input type="tel" id="telefono" name="telefono">
+<br>
+            <label for="curso" class="contenido">Su nivel actual de aprendizaje:</label>
+            <select id="curso" name="curso" required>
+                <option value="">Seleccione su nivel</option>
+                <option value="basico">Básico</option>
+                <option value="intermedio">Intermedio</option>
+                <option value="avanzado">Avanzado</option>
+            </select>
+<br>
+            <label for="jornada" class="contenido">Jornada Preferida:</label>
+            <select id="jornada" name="jornada" required>
+                <option value="">Seleccione una opción</option>
+                <option value="manana">Mañana</option>
+                <option value="tarde">Tarde</option>
+                <option value="noche">Noche</option>
+            </select>
+<br><br>
+            <label for="comentarios" class="contenido">Comentarios Adicionales:</label>
+            <textarea id="comentarios" name="comentarios" rows="4" cols="30"></textarea>
+<br>
+            <button type="submit" class="but-form">Registrar</button>
+            <button type="reset" class="but-form">Limpiar</button>
+            <button type="button" onclick="window.location.href='index.html'" class="but-form">Volver a Home</button>
+        </form>
+    </div>
+    <footer class="footer">
+        <p>©2020 - 2026 Asari Team. Todos los derechos reservados.</p>
+    </footer>
+</body>
+</html>
