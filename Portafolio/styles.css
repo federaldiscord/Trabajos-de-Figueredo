@@ -12,6 +12,12 @@
     justify-content: center;
     align-items: center;
     flex-direction: row;
+    border-bottom: 2px solid var(--color-acento);
+    margin-bottom: 20px;
+    font-family: Arial, sans-serif;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
 }
 
 .navbar ul {
@@ -22,7 +28,12 @@
     padding: 0;
 }
 
-.navbar li a {
+.navbar ol {
+    margin: 0;
+    padding: 0;
+}
+
+.navbar ol a {
     color: var(--color-texto);
     text-decoration: none;
     font-size: 1.1em;
@@ -31,7 +42,7 @@
     transition: background-color 0.3s, color 0.3s;
 }
 
-.navbar li a:hover {
+.navbar ol a:hover {
     background-color: var(--color-acento);
     color: var(--color-texto);
 }
@@ -71,6 +82,19 @@ body {
     color: var(--color-acento);
 }
 
+.content .project p {
+    margin: 5px 0;
+    line-height: 1.6;
+    color: var(--color-texto);
+    text-align: justify;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.content .project a {
+    color: var(--color-acento);
+    text-decoration: none;
+}
+
 .profile-pic {
     width: 150px;
     height: 150px;
@@ -87,4 +111,48 @@ body {
     border-top: 1px solid var(--color-acento);
     font-size: 14px;
     color: var(--color-texto);
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+form label {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+form input, form textarea {
+    padding: 8px;
+    border: 1px solid var(--color-acento);
+    border-radius: 4px;
+    font-size: 1em;
+    font-family: Arial, sans-serif;
+    background-color: var(--color-primario);
+    color: var(--color-texto);
+}
+
+form button {
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    background-color: var(--color-acento);
+    color: var(--color-texto);
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+form button:hover {
+    background-color: var(--color-texto);
+    color: var(--color-primario);
+}
+
+a {
+    text-decoration: none;
+    color: var(--color-acento);
 }
