@@ -1,0 +1,264 @@
+/* =============================
+   VARIABLES GLOBALES
+   ============================= */
+:root {
+    --bg: linear-gradient(135deg, #1c1c1c, #2a2a2a); 
+  /* 🎨 Fondo con degradado oscuro para dar más riqueza visual 
+     que un color plano. Ayuda a que el "vidrio" se note más. */
+
+  --text: #ffffff; /* Color de texto principal (blanco, buen contraste). */
+  --muted: #e0e0e0; /* Texto secundario en gris claro. */
+
+  /* Colores de acento para botones, enlaces y detalles. */
+  --accent-1: #f97316; /* Naranja brillante. */
+  --accent-2: #ef4444; /* Rojo cálido. */
+
+  /* 🎭 Glassmorphism (parámetros base) */
+  --card: rgba(255,255,255,0.15); 
+  /* Fondo translúcido → simula vidrio al dejar pasar parte del fondo. */
+  
+  --glass-blur: 16px; 
+  /* Nivel de desenfoque que se aplica detrás del "vidrio". 
+     Entre más alto, más difuso se ve el fondo. */
+
+  --border-glass: rgba(255,255,255,0.25); 
+  /* Borde semitransparente blanco que da el efecto de borde iluminado. */
+
+  --radius: 16px; /* Bordes redondeados → suaves y modernos. */
+  --max-width: 1200px; /* Máximo ancho del contenedor. */
+}
+
+/* =============================
+   RESET + ESTILO BASE
+   ============================= */
+* { 
+  margin: 0; 
+  padding: 0; 
+  box-sizing: border-box; 
+  /* 🔧 Reset básico → quita márgenes/paddings por defecto 
+     y hace que padding/border se incluyan en el ancho total. */
+}
+
+body {
+  font-family: 'Inter', sans-serif; /* Fuente moderna y legible. */
+  background: var(--bg); /* Aplica el degradado de fondo global. */
+  color: var(--text); /* Texto blanco por defecto. */
+  line-height: 1.6; /* Espaciado cómodo entre líneas. */
+}
+
+a { 
+  color: inherit; /* Los enlaces usan el mismo color que el texto. */
+  text-decoration: none; /* Se quita el subrayado estándar. */
+}
+
+/* =============================
+   CONTENEDOR GENERAL
+   ============================= */
+.container {
+  max-width: var(--max-width); /* Limita el ancho para que no ocupe toda la pantalla. */
+  margin: 0 auto; /* Centra horizontalmente. */
+  padding: 20px; /* Espacio interno. */
+}
+
+/* =============================
+   HEADER / NAVEGACIÓN
+   ============================= */
+.header {
+  display: flex; /* Coloca logo y menú en fila. */
+  justify-content: space-between; /* Logo a la izquierda, menú a la derecha. */
+  align-items: center; /* Alinea verticalmente al centro. */
+  padding: 14px 20px; /* Espaciado interno. */
+
+  border-radius: var(--radius); /* Bordes redondeados suaves. */
+  background: var(--card); /* Fondo translúcido → efecto vidrio. */
+  backdrop-filter: blur(var(--glass-blur)); 
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  /* 🔮 Aplica desenfoque al fondo detrás del header (efecto vidrio real). */
+
+  border: 1px solid var(--border-glass); 
+  /* Línea blanca semitransparente que simula borde iluminado. */
+
+  box-shadow: 0 8px 24px rgba(0,0,0,0.4); 
+  /* Sombra externa → hace que "flote" sobre el fondo. */
+
+  margin-bottom: 30px; /* Separa del contenido siguiente. */
+}
+
+.header nav { 
+  display: flex; 
+  gap: 16px; /* Espacio entre enlaces del menú. */
+}
+
+.header a {
+  padding: 8px 12px; /* Aumenta la zona clickeable. */
+  border-radius: var(--radius); /* Bordes suaves en hover. */
+  transition: 0.3s; /* Suaviza cambios de color/fondo. */
+  color: var(--muted); /* Texto gris claro por defecto. */
+}
+
+.header a:hover {
+  background: var(--accent-1); /* Fondo naranja al pasar el mouse. */
+  color: white; /* Contraste → texto en blanco. */
+}
+
+/* =============================
+   HERO (sección principal con imagen)
+   ============================= */
+.hero {
+  text-align: center; /* Centra el texto dentro. */
+  padding: 100px 20px; /* Mucho espacio para destacar. */
+  background: url('https://images.pexels.com/photos/1058277/pexels-photo-1058277.jpeg') 
+              center/cover no-repeat; 
+  /* Imagen de fondo centrada y recortada para cubrir toda la sección. */
+
+  border-radius: var(--radius); /* Bordes suaves. */
+  position: relative; /* Necesario para usar ::after (overlay). */
+  color: white; /* Texto claro por encima de la imagen. */
+  overflow: hidden; /* Evita que overlay se desborde. */
+}
+
+.hero::after {
+  content: "";
+  position: absolute; inset: 0; /* Cubre todo el hero. */
+  background: rgba(0,0,0,0.5); 
+  /* Oscurece la imagen de fondo para que el texto se lea mejor. */
+  border-radius: var(--radius); /* Respeta esquinas redondeadas. */
+}
+
+.hero > * {
+  position: relative; /* Evita que el overlay tape el texto. */
+  z-index: 1; /* Coloca texto por encima del overlay. */
+}
+
+/* =============================
+   BOTONES
+   ============================= */
+.btn {
+  display: inline-block; /* Hace que se comporte como bloque pequeño. */
+  padding: 12px 20px; /* Espaciado interno. */
+  border-radius: var(--radius); /* Bordes suaves. */
+  font-weight: bold; /* Texto destacado. */
+  transition: 0.3s; /* Suaviza cambios. */
+  border: 1px solid rgba(255,255,255,0.2); 
+  /* Borde tenue tipo vidrio. */
+}
+
+.btn-primary {
+  background: linear-gradient(90deg,var(--accent-1),var(--accent-2)); 
+  /* Degradado naranja → rojo. */
+  color: white; /* Texto en blanco. */
+}
+
+.btn-primary:hover { 
+  opacity: 0.9; /* Oscurece un poco en hover. */
+}
+
+/* =============================
+   TARJETAS (Glassmorphism real)
+   ============================= */
+.card {
+  background: var(--card); /* Fondo translúcido → deja ver el fondo. */
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  /* 🔮 Difumina lo que está detrás para simular vidrio esmerilado. */
+
+  padding: 24px; /* Espaciado interno. */
+  border-radius: var(--radius); /* Esquinas suaves. */
+
+  border: 1px solid var(--border-glass); 
+  /* Borde blanco translúcido que brilla. */
+
+  box-shadow: 
+    0 8px 32px rgba(0,0,0,0.4), /* Sombra externa que da profundidad. */
+    inset 0 1px 2px rgba(255,255,255,0.1); 
+  /* Sombra interna ligera que imita reflejo del vidrio. */
+}
+
+/* Imágenes dentro de tarjetas */
+.card img {
+  width: 100%; /* Ocupan todo el ancho de la tarjeta. */
+  height: 220px; /* Altura fija para uniformidad. */
+  object-fit: cover; /* Mantiene proporción y recorta. */
+  border-radius: 12px; /* Bordes redondeados. */
+  display: block; /* Evita espacios indeseados debajo. */
+}
+
+/* =============================
+   GRID RESPONSIVO
+   ============================= */
+.grid {
+  display: grid; /* Crea sistema de columnas. */
+  gap: 20px; /* Espacio entre tarjetas. */
+}
+
+.grid-3 { 
+  grid-template-columns: repeat(auto-fit,minmax(250px,1fr)); 
+  /* Ajusta automáticamente columnas:
+     - mínimo 250px
+     - máximo ocupan el ancho disponible */
+}
+
+/* =============================
+   FOOTER
+   ============================= */
+.footer {
+  text-align: center; /* Centra el texto. */
+  padding: 20px; /* Espaciado interno. */
+  margin-top: 40px; /* Separación respecto al contenido. */
+
+  background: var(--card); /* Fondo translúcido. */
+  border-radius: var(--radius); /* Bordes suaves. */
+  border: 1px solid var(--border-glass); /* Borde vítreo. */
+  backdrop-filter: blur(var(--glass-blur)); /* Efecto vidrio. */
+  color: var(--muted); /* Texto gris claro. */
+}
+
+/* =============================
+    FORMULARIO
+    ============================= */
+
+/* Formulario general */
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Grupo de campo */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+/* Etiquetas */
+.form-group label {
+  font-weight: 600;
+  color: var(--muted);
+}
+
+/* Inputs */
+.form-group input,
+.form-group textarea {
+  padding: 12px;
+  border-radius: var(--radius);
+  border: 1px solid rgba(255,255,255,0.25);
+  background: rgba(255,255,255,0.08);
+  color: var(--text);
+  font-size: 14px;
+  outline: none;
+  transition: 0.3s;
+}
+
+/* Efecto en focus */
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: var(--accent-1);
+  box-shadow: 0 0 6px var(--accent-1);
+}
+
+/* Card especial para formulario */
+.form-card {
+  max-width: 400px;
+  margin: 0 auto;
+}
