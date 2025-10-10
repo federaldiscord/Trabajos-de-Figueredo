@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <title>Inicio</title>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid px-4 col-12 d-flex justify-content-between">
+            <a class="navbar-brand" href="inicio.html">Muestras de Bootstrap</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="navbar-collapse collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="index.html">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="margins.html">Márgenes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="containers.html">Contenedores</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="columnas.html">Rellenos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled" href="text_alignment.html">Alineación de Texto</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled" href="text_colors.html">Colores de Texto</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled" href="background_colors.html">Colores de Fondo</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+<div id="carrusel" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+        <button type="button" data-bs-target="#carrusel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#carrusel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#carrusel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    </div>
+    <div class="carousel-inner" style="flex: auto; max-height: 450px;">
+        <div class="carousel-item active">
+        <img class="d-block w-100" src="img/rest3.jpg" alt="First slide">
+        </div>
+        <div class="carousel-item">
+        <img class="d-block w-100" src="img/risotto.jpg" alt="Second slide">
+        </div>
+        <div class="carousel-item">
+        <img class="d-block w-100" src="img/tarta.jpg" alt="Third slide">
+        </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carrusel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carrusel" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+</div>
+<div class="container-fluid bg-success text-white text-center p-4 mt-4">
+    <div class="row g-4 justify-content-center">
+        <div class="col-lg-4 col-md-6 col-sm-12"><img src="img/risotto.jpg" alt="rest1" class="img-fluid" style="max-width: 20%;"></div>
+        <div class="col-lg-4 col-md-6 col-sm-12"><img src="img/tarta.jpg" alt="rest1" class="img-fluid" style="max-width: 20%;"></div>
+        <div class="col-lg-4 col-md-6 col-sm-12"><img src="img/rest3.jpg" alt="rest1" class="img-fluid" style="max-width: 20%;"></div>
+        <div class="col-lg-4 col-md-6 col-sm-12"><img src="img/rest3.jpg" alt="rest1" class="img-fluid"  style="max-width: 20%;"></div>
+        <div class="col-lg-4 col-md-6 col-sm-12"><img src="img/risotto.jpg" alt="rest1" class="img-fluid" style="max-width: 20%;"></div>
+        <div class="col-lg-4 col-md-6 col-sm-12"><img src="img/tarta.jpg" alt="rest1" class="img-fluid" style="max-width: 20%;"></div>
+        <div class="col-lg-4 col-md-6 col-sm-12"><img src="img/rest3.jpg" alt="rest1" class="img-fluid" style="max-width: 20%;"></div>
+        <div class="col-lg-4 col-md-6 col-sm-12"><img src="img/rest3.jpg" alt="rest1" class="img-fluid" style="max-width: 20%;"></div>
+        <div class="col-lg-4 col-md-6 col-sm-12"><img src="img/rest3.jpg" alt="rest1" class="img-fluid" style="max-width: 20%;"></div>
+        <div class="col-lg-4 col-md-6 col-sm-12"><img src="img/rest3.jpg" alt="rest1" class="img-fluid" style="max-width: 20%;"></div>
+    </div>
+</div>
+<div class="box">
+<div class="box d-flex flex-column align-items-center">
+    <div class="card text-bg-dark my-5" style="max-width: 540px;">
+        <div class="row g-0">
+            <div class="col-md-4">
+                <img src="img/tarta.jpg" class="img-fluid" alt="...">
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h5 class="card-title">Tarjeta</h5>
+                    <p class="card-text">Descripción de esta</p>
+                    <p class="card-text"><small>Alguna leyenda</small></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card text-bg-dark my-5" style="max-width: 540px;">
+        <div class="row g-0">
+            <div class="col-md-4">
+                <img src="img/tarta.jpg" class="img-fluid" alt="...">
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h5 class="card-title">Tarjeta</h5>
+                    <p class="card-text">Descripción de esta</p>
+                    <p class="card-text"><small>Alguna leyenda</small></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
