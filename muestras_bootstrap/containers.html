@@ -1,71 +1,121 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
-    <title>Containers</title>
+    <title>Contenedores</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
 </head>
+
 <body>
-        <nav class="navbar navbar-expand-lg bg-body-tertiary">
-        <div class="container-fluid px-4 col-12 d-flex justify-content-between">
-            <a class="navbar-brand" href="inicio.html">Muestras de Bootstrap</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary shadow-sm">
+        <div class="container-fluid px-4 d-flex justify-content-between">
+            <a class="navbar-brand fw-bold" href="inicio.html">
+                <i class="bi bi-bootstrap-fill text-primary me-2"></i>Muestras Bootstrap
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="navbar-collapse collapse" id="navbarNav">
+            <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="index.html">Inicio</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="margins.html">Márgenes</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="containers.html">Contenedores</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="columnas.html">Rellenos</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link disabled" href="text_alignment.html">Alineación de Texto</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link disabled" href="text_colors.html">Colores de Texto</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link disabled" href="background_colors.html">Colores de Fondo</a>
-                    </li>
+                    <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
+                    <li class="nav-item"><a class="nav-link" href="margins.html">Márgenes</a></li>
+                    <li class="nav-item"><a class="nav-link" href="containers.html">Contenedores</a></li>
+                    <li class="nav-item"><a class="nav-link" href="columnas.html">Rellenos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="formulario.html">Formulario</a></li>
+                    <li class="nav-item"><a class="nav-link disabled" href="text_alignment.html">Alineación de Texto</a></li>
+                    <li class="nav-item"><a class="nav-link disabled" href="text_colors.html">Colores de Texto</a></li>
+                    <li class="nav-item"><a class="nav-link disabled" href="background_colors.html">Colores de Fondo</a></li>
                 </ul>
             </div>
         </div>
     </nav>
 
-    <h1 class="text-center">Hola, soy Steban</h1>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6 bg-success">
-                <p>Soy estudiante del Sena.</p>
+    <header class="text-center py-5 bg-light">
+        <h1 class="fw-bold text-primary">
+            <i class="bi bi-person-workspace me-2"></i>Hola, soy Steban
+        </h1>
+        <p class="lead text-secondary">Estudiante del SENA, combinando técnica y pasión por el aprendizaje continuo.</p>
+        <p class="lead text-secondary">Aquí te mostraré algunas cosas bajo el contexto de un restaurante</p>
+    </header>
+
+    <div class="container py-5">
+        <div class="row g-4">
+
+            <div class="col-md-6">
+                <div class="card text-bg-success shadow-lg border-0 rounded-4 h-100">
+                    <div class="card-body">
+                        <h5 class="card-title"><i class="bi bi-mortarboard-fill me-2"></i>Formación</h5>
+                        <p class="card-text">Soy estudiante del SENA, enfocado en fortalecer mis habilidades técnicas y
+                            prácticas.</p>
+                    </div>
+                </div>
             </div>
-            <div class="col-md-6 bg-primary">
-                <p>Titulado como técnico, y estudiando tecnólogo.</p>
+
+            <div class="col-md-6">
+                <div class="card text-bg-primary shadow-lg border-0 rounded-4 h-100">
+                    <div class="card-body">
+                        <h5 class="card-title"><i class="bi bi-book-fill me-2"></i>Trayectoria</h5>
+                        <p class="card-text">Titulado como técnico y actualmente cursando el nivel tecnólogo con
+                            entusiasmo.</p>
+                    </div>
+                </div>
             </div>
-            <div class="col-md-6 bg-danger">
-                <p>Soy estudiante del Sena.</p>
+
+            <div class="col-md-6">
+                <div class="card text-bg-danger shadow-lg border-0 rounded-4 h-100">
+                    <div class="card-body">
+                        <h5 class="card-title"><i class="bi bi-heart-pulse-fill me-2"></i>Pasión</h5>
+                        <p class="card-text">Apasionado por la tecnología, la programación y el desarrollo de soluciones
+                            innovadoras.</p>
+                    </div>
+                </div>
             </div>
-            <div class="col-md-6 bg-warning">
-                <p>Titulado como técnico, y estudiando tecnólogo.</p>
+
+            <div class="col-md-6">
+                <div class="card text-bg-warning shadow-lg border-0 rounded-4 h-100">
+                    <div class="card-body">
+                        <h5 class="card-title"><i class="bi bi-lightbulb-fill me-2"></i>Creatividad</h5>
+                        <p class="card-text">Me encanta combinar diseño y funcionalidad para crear experiencias
+                            intuitivas.</p>
+                    </div>
+                </div>
             </div>
-            <div class="col-md-6 bg-info">
-                <p>Soy estudiante del Sena.</p>
+
+            <div class="col-md-6">
+                <div class="card text-bg-info shadow-lg border-0 rounded-4 h-100">
+                    <div class="card-body">
+                        <h5 class="card-title"><i class="bi bi-gear-fill me-2"></i>Desarrollo</h5>
+                        <p class="card-text">Trabajo constantemente en mejorar mis habilidades de desarrollo web y
+                            software.</p>
+                    </div>
+                </div>
             </div>
-            <div class="col-md-6 bg-secondary">
-                <p>Titulado como técnico, y estudiando tecnólogo.</p>
+
+            <div class="col-md-6">
+                <div class="card text-bg-secondary shadow-lg border-0 rounded-4 h-100">
+                    <div class="card-body">
+                        <h5 class="card-title"><i class="bi bi-people-fill me-2"></i>Colaboración</h5>
+                        <p class="card-text">Disfruto trabajar en equipo y aprender de los demás para alcanzar grandes
+                            resultados.</p>
+                    </div>
+                </div>
             </div>
+
         </div>
     </div>
-    
+
+    <footer class="bg-dark text-white text-center p-4">
+        <div class="d-flex flex-column gap-2">
+            <a href="#" class="text-decoration-none text-white"><i class="bi bi-facebook me-1"></i>Facebook</a>
+            <a href="#" class="text-decoration-none text-white"><i class="bi bi-instagram me-1"></i>Instagram</a>
+            <a href="formulario.html" class="text-decoration-none text-white"><i class="bi bi-envelope me-1"></i>Contacto</a>
+        </div>
+    </footer>>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>

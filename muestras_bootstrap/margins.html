@@ -7,52 +7,71 @@
     <title>Margins</title>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
-        <div class="container-fluid px-4 col-12 d-flex justify-content-between">
-            <a class="navbar-brand" href="inicio.html">Muestras de Bootstrap</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary shadow-sm">
+        <div class="container-fluid px-4 d-flex justify-content-between">
+            <a class="navbar-brand fw-bold" href="inicio.html">
+                <i class="bi bi-bootstrap-fill text-primary me-2"></i>Muestras Bootstrap
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="navbar-collapse collapse" id="navbarNav">
+            <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="index.html">Inicio</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="margins.html">Márgenes</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="containers.html">Contenedores</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="columnas.html">Rellenos</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link disabled" href="text_alignment.html">Alineación de Texto</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link disabled" href="text_colors.html">Colores de Texto</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link disabled" href="background_colors.html">Colores de Fondo</a>
-                    </li>
+                    <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
+                    <li class="nav-item"><a class="nav-link" href="margins.html">Márgenes</a></li>
+                    <li class="nav-item"><a class="nav-link" href="containers.html">Contenedores</a></li>
+                    <li class="nav-item"><a class="nav-link" href="columnas.html">Rellenos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="formulario.html">Formulario</a></li>
+                    <li class="nav-item"><a class="nav-link disabled" href="text_alignment.html">Alineación de Texto</a></li>
+                    <li class="nav-item"><a class="nav-link disabled" href="text_colors.html">Colores de Texto</a></li>
+                    <li class="nav-item"><a class="nav-link disabled" href="background_colors.html">Colores de Fondo</a></li>
                 </ul>
             </div>
         </div>
     </nav>
 
-    <div class="container">
+    <header class="text-center py-5 bg-light">
+        <h1 class="fw-bold text-primary"><i class="bi bi-arrows-expand me-2"></i>Ejemplo de Márgenes con Bootstrap</h1>
+        <p class="text-secondary lead">Aprende cómo utilizar las clases <code>m-*</code> y <code>p-*</code> para controlar los márgenes y rellenos de tus elementos.</p>
+    </header>
+
+    <div class="container my-5">
         <div class="row">
-            <div class="col-12">
-                <h1 class="mt-5 mb-3">Ejemplo de Márgenes con Bootstrap</h1>
-                <p class="mb-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi magnam, aut optio ipsum aliquid cupiditate tenetur maiores provident, amet eligendi, perspiciatis vitae quos magni! Recusandae et suscipit doloribus eos molestias.</p>
-                
-                <div class="bg-primary text-white p-3 mb-3">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sint quos accusantium harum, eligendi iste aut culpa consequatur, cum aliquam autem suscipit placeat quas unde. Quas ipsa quia reiciendis odit. Expedita?</div>
-                <div class="bg-secondary text-white p-3 mt-3 mb-3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit eos quasi ipsam. Eaque culpa quos quam dolorem minus rerum? Voluptas obcaecati earum maxime qui doloremque delectus repellendus officia odit ullam!</div>
-                <div class="bg-success text-white p-3 mt-3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos hic sequi asperiores laborum aut doloremque neque deserunt totam perspiciatis repudiandae suscipit dolor deleniti atque error voluptatum quibusdam corporis, ab placeat!</div>
+        <div class="col-12">
+            <p class="mb-5">En Bootstrap, las utilidades de márgenes (<code>m</code>) y de padding (<code>p</code>) te permiten ajustar el espacio externo e interno de los elementos de forma precisa. A continuación verás algunos ejemplos:</p>
+
+            <div class="card text-bg-primary border-0 rounded-4 shadow-lg mb-4">
+            <div class="card-body">
+                <h5 class="card-title"><i class="bi bi-arrow-down-up me-2"></i>Ejemplo con <code>.mb-3</code></h5>
+                <p class="card-text">Esta tarjeta tiene un margen inferior de 3 unidades. Se utiliza para separar visualmente los bloques.</p>
             </div>
+            </div>
+
+            <div class="card text-bg-secondary border-0 rounded-4 shadow-lg mt-4 mb-4">
+            <div class="card-body">
+                <h5 class="card-title"><i class="bi bi-arrow-left-right me-2"></i>Ejemplo con <code>.mt-3</code> y <code>.mb-3</code></h5>
+                <p class="card-text">En este caso se agregan márgenes arriba y abajo, generando espacio entre los elementos.</p>
+            </div>
+            </div>
+
+            <div class="card text-bg-success border-0 rounded-4 shadow-lg mt-4 mb-5">
+            <div class="card-body">
+                <h5 class="card-title"><i class="bi bi-bounding-box me-2"></i>Ejemplo con <code>.mt-3</code> solamente</h5>
+                <p class="card-text">El margen superior separa esta tarjeta de las anteriores, demostrando la utilidad del espaciado vertical.</p>
+            </div>
+            </div>
+
+        </div>
         </div>
     </div>
+
+    <footer class="bg-dark text-white text-center p-4">
+        <div class="d-flex flex-column gap-2">
+        <a href="#" class="text-decoration-none text-white"><i class="bi bi-facebook me-1"></i>Facebook</a>
+        <a href="#" class="text-decoration-none text-white"><i class="bi bi-instagram me-1"></i>Instagram</a>
+        <a href="formulario.html" class="text-decoration-none text-white"><i class="bi bi-envelope me-1"></i>Contacto</a>
+        </div>
+    </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
