@@ -74,6 +74,16 @@
     animation: fadeZoom 1.2s forwards;
     }
 
+    form .form-control:focus, form .form-select:focus {
+    border-color: #1e5f9b;
+    box-shadow: 0 0 0 0.25rem rgba(30, 95, 155, 0.25);
+    }
+
+    .card.bg-light {
+    background: linear-gradient(180deg, #f8fbff, #e8f1fa);
+    }
+
+
     @keyframes fadeIn {
     to { opacity: 1; }
     }
