@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Inicio</title>
+</head>
+<body>
+    <div class="header">
+        <h1>​☀️​¡Mi día perfecto!​☀️​</h1>
+        <h3>Bienvenid@!</h3>
+        <button onclick="changeTheme()" id="cambiarTema" class="btn">Cambiar tema​🔃​</button>
+    </div>
+
+    <div class="Container" id="container">
+        <h4>¿Cómo te llamas?</h4>
+        <input type="text" id="nameInput" placeholder="Escribe tu nombre.">
+        <button onclick="greetUser()" class="btn">Saludar​👋</button>
+    </div> 
+
+    <div class="imagen" id="imagen">
+        <img src="imagenes/" alt="Imagen del día">
+        <button onclick="changeImage()" class="btn" id="foto">Mostrar imagen​👀​</button>
+    </div>
+
+    <div class="contador" id="contador">
+        <h4>¿Te gusta esta página?</h4>
+        <button onclick="likePage()" class="btn" id="btn">Me gusta❤️​</button>
+        <p id="likeCount">A 0 personas les gusta esta página.</p>
+    </div>
+
+    <div class="footer">
+        <p>Team Asari 2020 - 2026 &copy;</p>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
