@@ -56,3 +56,8 @@ document.addEventListener("DOMContentLoaded", () => {
     document.querySelector(".form").reset();
     return true;
 }
+document.querySelector(".form").addEventListener("submit", (e) => {
+    e.preventDefault();
+    validarFormulario();
+});
+
