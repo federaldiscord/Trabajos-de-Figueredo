@@ -1,63 +1,51 @@
+// /script.js
 document.addEventListener("DOMContentLoaded", () => {
-    const button = document.getElementById("button");
-    button.addEventListener("click", validarFormulario);
-    });
+  const form = document.querySelector(".form");
+  const inputs = form.querySelectorAll("input[required]");
+  const successMsg = document.querySelector(".success-msg");
+  const button = document.getElementById("button");
 
-    function validarFormulario() {
-    const nombre = document.getElementById("nombre").value.trim();
-    const apellido = document.getElementById("apellido").value.trim();
-    const email = document.getElementById("email").value.trim();
-    const password = document.getElementById("password").value;
-    const confirmarPassword = document.getElementById("confirm-password").value;
-    const dob = document.getElementById("dob").value;
-
-    if (!nombre || !apellido || !email || !password || !confirmarPassword || !dob) {
-        alert("⚠️ Por favor, complete todos los campos obligatorios.");
-        return false;
+  const validators = {
+    nombre: v => /^[A-Za-zÁÉÍÓÚáéíóúñÑ\s]+$/.test(v) || "Solo letras.",
+    apellido: v => /^[A-Za-zÁÉÍÓÚáéíóúñÑ\s]+$/.test(v) || "Solo letras.",
+    email: v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v) || "Correo inválido.",
+    password: v => v.length >= 6 || "Mínimo 6 caracteres.",
+    "confirm-password": v => v === form.password.value || "No coincide.",
+    dob: v => {
+      const fecha = new Date(v);
+      const hoy = new Date();
+      let edad = hoy.getFullYear() - fecha.getFullYear();
+      const m = hoy.getMonth() - fecha.getMonth();
+      if (m < 0 || (m === 0 && hoy.getDate() < fecha.getDate())) edad--;
+      return edad >= 18 || "Debes ser mayor de 18 años.";
     }
+  };
 
-    const regexNombre = /^[A-Za-zÁÉÍÓÚáéíóúñÑ\s]+$/;
-    if (!regexNombre.test(nombre) || !regexNombre.test(apellido)) {
-        alert("❌ El nombre y el apellido solo pueden contener letras.");
-        return false;
+  const validateField = (input) => {
+    const errorEl = input.nextElementSibling;
+    const result = validators[input.id]?.(input.value.trim());
+    if (result !== true) {
+      errorEl.textContent = result;
+      input.classList.add("invalid");
+      return false;
     }
-
-    const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!regexEmail.test(email)) {
-        alert("❌ Ingrese un correo electrónico válido.");
-        return false;
-    }
-
-    if (password.length < 6) {
-        alert("❌ La contraseña debe tener al menos 6 caracteres.");
-        return false;
-    }
-
-    if (password !== confirmarPassword) {
-        alert("❌ Las contraseñas no coinciden.");
-        return false;
-    }
-
-    const fechaNacimiento = new Date(dob);
-    const hoy = new Date();
-    const edad = hoy.getFullYear() - fechaNacimiento.getFullYear();
-    const mes = hoy.getMonth() - fechaNacimiento.getMonth();
-    const dia = hoy.getDate() - fechaNacimiento.getDate();
-
-    let edadFinal = edad;
-    if (mes < 0 || (mes === 0 && dia < 0)) edadFinal--;
-
-    if (edadFinal < 18) {
-        alert("⚠️ Debes tener al menos 18 años para registrarte.");
-        return false;
-    }
-
-    alert(`¡Registro exitoso! Bienvenid@ ${nombre} ${apellido}.`);
-    document.querySelector(".form").reset();
+    errorEl.textContent = "";
+    input.classList.remove("invalid");
     return true;
-}
-document.querySelector(".form").addEventListener("submit", (e) => {
-    e.preventDefault();
-    validarFormulario();
-});
+  };
 
+  inputs.forEach(i => i.addEventListener("input", () => {
+    validateField(i);
+    button.disabled = !Array.from(inputs).every(f => validateField(f));
+  }));
+
+  form.addEventListener("submit", e => {
+    e.preventDefault();
+    const valid = Array.from(inputs).every(validateField);
+    if (valid) {
+      successMsg.textContent = `✅ ¡Registro exitoso! Bienvenid@ ${form.nombre.value} ${form.apellido.value}`;
+      form.reset();
+      button.disabled = true;
+    }
+  });
+});
