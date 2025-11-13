@@ -48,12 +48,27 @@
 
         <div class="input-group">
           <label for="dob">Fecha de Nacimiento</label>
-          <input type="date" id="dob" name="dob" require
+          <input type="date" id="dob" name="dob" required>
+          <small class="error-msg"></small>
+        </div>
 
-          <div class="progress-bar">
-            <div class="progress-fill" id="progress-bar"></div>
-          </div>
+        <div class="progress-bar">
+          <div class="progress-fill" id="progress-bar"></div>
+        </div>
 
-          <div class="button"
-          <button type="submit">Registrarse</button>
-          </div>
+        <div class="button">
+          <button type="submit" id="button" disabled>Registrarse</button>
+        </div>
+
+        <p class="success-msg"></p>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <p>©2020-2026 Team Asari Develpment</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

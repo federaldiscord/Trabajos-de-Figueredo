@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const inputs = form.querySelectorAll("input[required]");
   const successMsg = document.querySelector(".success-msg");
   const button = document.getElementById("button");
+  const progressBar = document.getElementById("progress-bar");
 
   const validators = {
     nombre: v => /^[A-Za-zÁÉÍÓÚáéíóúñÑ\s]+$/.test(v) || "Solo letras.",
@@ -13,6 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
     "confirm-password": v => v === form.password.value || "No coincide.",
     dob: v => {
       const fecha = new Date(v);
+      if (isNaN(fecha)) return "Fecha inválida.";
       const hoy = new Date();
       let edad = hoy.getFullYear() - fecha.getFullYear();
       const m = hoy.getMonth() - fecha.getMonth();
@@ -34,30 +36,32 @@ document.addEventListener("DOMContentLoaded", () => {
     return true;
   };
 
-  inputs.forEach(i => i.addEventListener("input", () => {
-    validateField(i);
-    button.disabled = !Array.from(inputs).every(f => validateField(f));
-  }));
+  const updateProgress = () => {
+    const filled = Array.from(inputs).filter(i => i.value.trim() !== "").length;
+    const progress = (filled / inputs.length) * 100;
+    if (progressBar) progressBar.style.width = `${progress}%`;
+  };
+
+  inputs.forEach(i => {
+    i.addEventListener("input", () => {
+      validateField(i);
+      updateProgress();
+      if (button) button.disabled = !Array.from(inputs).every(f => validateField(f));
+    });
+  });
 
   form.addEventListener("submit", e => {
     e.preventDefault();
     const valid = Array.from(inputs).every(validateField);
     if (valid) {
-      successMsg.textContent = `✅ ¡Registro exitoso! Bienvenid@ ${form.nombre.value} ${form.apellido.value}`;
+      if (successMsg) {
+        successMsg.textContent = `✅ ¡Registro exitoso! Bienvenid@ ${form.nombre.value} ${form.apellido.value}`;
+      }
       form.reset();
-      button.disabled = true;
+      if (button) button.disabled = true;
+      updateProgress();
     }
   });
-});
 
-
-// progress bar for form
-document.getElementById("progress-bar").style.width = "0%";
-const totalFields = document.querySelectorAll(".form input[required]").length;
-document.querySelectorAll(".form input[required]").forEach(input => {
-  input.addEventListener("input", () => {
-    const filledFields = Array.from(document.querySelectorAll(".form input[required]")).filter(i => i.value.trim() !== "").length;
-    const progress = (filledFields / totalFields) * 100;
-    document.getElementById("progress-bar").style.width = progress + "%";
-  });
+  updateProgress();
 });
