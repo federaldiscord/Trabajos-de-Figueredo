@@ -79,6 +79,14 @@ button:hover:not(:disabled) {
   margin-top: 5px;
 }
 
+.progress-fill {
+  height: 10px;
+  background: #4CAF50;
+  border-radius: 5px;
+  width: 0;
+  transition: width 0.3s ease;
+}
+
 .success-msg {
   color: #2ecc71;
   font-weight: bold;
