@@ -49,3 +49,15 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
+
+
+// progress bar for form
+document.getElementById("progress-bar").style.width = "0%";
+const totalFields = document.querySelectorAll(".form input[required]").length;
+document.querySelectorAll(".form input[required]").forEach(input => {
+  input.addEventListener("input", () => {
+    const filledFields = Array.from(document.querySelectorAll(".form input[required]")).filter(i => i.value.trim() !== "").length;
+    const progress = (filledFields / totalFields) * 100;
+    document.getElementById("progress-bar").style.width = progress + "%";
+  });
+});
