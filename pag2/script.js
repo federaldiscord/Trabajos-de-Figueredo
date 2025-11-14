@@ -1,107 +1,160 @@
-    document.addEventListener("DOMContentLoaded", () => {
+// ========================================================
+// UTILIDADES
+// ========================================================
+
+// Obtiene lista de usuarios desde localStorage
+function obtenerUsuarios() {
+    return JSON.parse(localStorage.getItem("usuarios")) || [];
+}
+
+// Guarda lista completa de usuarios
+function guardarUsuarios(usuarios) {
+    localStorage.setItem("usuarios", JSON.stringify(usuarios));
+}
+
+// Limpia el formulario y errores
+function limpiarFormulario() {
+    document.getElementById("nombre").value = "";
+    document.getElementById("email").value = "";
+    document.getElementById("edad").value = "";
+
+    // limpiar errores
+    const errores = document.querySelectorAll(".error-msg");
+    errores.forEach(e => e.textContent = "");
+}
+
+// ========================================================
+// VALIDACIONES
+// ========================================================
+function validarInputs() {
+    let valido = true;
 
     const nombre = document.getElementById("nombre");
     const email = document.getElementById("email");
     const edad = document.getElementById("edad");
 
-    const guardarBtn = document.getElementById("guardar");
-    const verBtn = document.getElementById("ver");
-    const limpiarBtn = document.getElementById("limpiar");
-    const borrarBtn = document.getElementById("borrar");
+    const errorNombre = nombre.nextElementSibling;
+    const errorEmail = email.nextElementSibling;
+    const errorEdad = edad.nextElementSibling;
 
-    const resultado = document.getElementById("resultado");
+    // reset mensajes previos
+    errorNombre.textContent = "";
+    errorEmail.textContent = "";
+    errorEdad.textContent = "";
 
-    // ---------------- VALIDACIONES ----------------
+    if (nombre.value.trim() === "") {
+        errorNombre.textContent = "El nombre es obligatorio";
+        valido = false;
+    }
 
-    const validarNombre = (v) => {
-        if (!v.trim()) return "El nombre es obligatorio.";
-        if (!/^[A-Za-zÁÉÍÓÚÑáéíóúñ\s]{2,}$/.test(v)) return "Solo letras, mínimo 2.";
-        return true;
-    };
+    if (email.value.trim() === "" || !email.value.includes("@")) {
+        errorEmail.textContent = "Email inválido";
+        valido = false;
+    }
 
-    const validarEmail = (v) => {
-        if (!v.trim()) return "El email es obligatorio.";
-        if (!/^[^\s@]+@[^\s@]+\.[a-zA-Z]{2,}$/.test(v)) return "Correo inválido.";
-        return true;
-    };
+    if (edad.value.trim() === "" || edad.value <= 0) {
+        errorEdad.textContent = "Edad inválida";
+        valido = false;
+    }
 
-    const validarEdad = (v) => {
-        if (!v.trim()) return "La edad es obligatoria.";
-        if (isNaN(v)) return "Debe ser un número.";
-        if (v < 1 || v > 120) return "Edad inválida.";
-        return true;
-    };
+    return valido;
+}
 
-    const mostrarError = (input, mensaje) => {
-        input.nextElementSibling.textContent = mensaje;
-    };
+// ========================================================
+// GUARDAR USUARIO
+// ========================================================
+document.getElementById("guardar").addEventListener("click", () => {
+    if (!validarInputs()) return;
 
-    const limpiarErrores = () => {
-        document.querySelectorAll(".error-msg").forEach(e => e.textContent = "");
-    };
+    const nombre = document.getElementById("nombre").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const edad = document.getElementById("edad").value.trim();
 
-    // ---------------- BOTÓN GUARDAR ----------------
-    guardarBtn.addEventListener("click", () => {
+    const usuarios = obtenerUsuarios();
 
-        limpiarErrores();
-        let valido = true;
+    usuarios.push({ nombre, email, edad });
+    guardarUsuarios(usuarios);
 
-        const vNombre = validarNombre(nombre.value);
-        const vEmail = validarEmail(email.value);
-        const vEdad = validarEdad(edad.value);
+    limpiarFormulario();
+    renderUsuarios();
+});
 
-        if (vNombre !== true) { mostrarError(nombre, vNombre); valido = false; }
-        if (vEmail !== true) { mostrarError(email, vEmail); valido = false; }
-        if (vEdad !== true) { mostrarError(edad, vEdad); valido = false; }
+// ========================================================
+// BOTÓN VER DATOS
+// ========================================================
+document.getElementById("ver").addEventListener("click", renderUsuarios);
 
-        if (!valido) {
-        resultado.textContent = "Corrige los errores antes de guardar.";
+// ========================================================
+// BOTÓN LIMPIAR FORMULARIO
+// ========================================================
+document.getElementById("limpiar").addEventListener("click", limpiarFormulario);
+
+// ========================================================
+// BORRAR TODOS LOS DATOS
+// ========================================================
+document.getElementById("borrar").addEventListener("click", () => {
+    localStorage.removeItem("usuarios");
+    renderUsuarios();
+});
+
+// ========================================================
+// RENDERIZAR LISTA DE USUARIOS CON BOTÓN INDIVIDUAL
+// ========================================================
+function renderUsuarios() {
+    const usuarios = obtenerUsuarios();
+    const cont = document.getElementById("resultado");
+
+    if (usuarios.length === 0) {
+        cont.innerHTML = "No hay usuarios guardados";
         return;
-        }
+    }
 
-        const user = {
-        nombre: nombre.value.trim(),
-        email: email.value.trim(),
-        edad: edad.value.trim()
-        };
+    let html = "<ul style='list-style:none; padding:0;'>";
 
-        localStorage.setItem("usuario", JSON.stringify(user));
-        resultado.textContent = "✔ Usuario guardado correctamente.";
-    });
+    usuarios.forEach((u, index) => {
+        html += `
+            <li style="
+                margin-bottom: 12px;
+                background: white;
+                padding: 10px;
+                border-radius: 6px;
+                box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            ">
+                <div>
+                    <strong>${u.nombre}</strong> <br>
+                    ${u.email} — ${u.edad} años
+                </div>
 
-    // ---------------- BOTÓN VER DATOS ----------------
-    verBtn.addEventListener("click", () => {
-        const stored = localStorage.getItem("usuario");
-
-        if (!stored) {
-        resultado.textContent = "No hay usuarios guardados.";
-        return;
-        }
-
-        const u = JSON.parse(stored);
-        resultado.innerHTML = `
-        <b>Datos guardados:</b><br>
-        Nombre: ${u.nombre}<br>
-        Email: ${u.email}<br>
-        Edad: ${u.edad}
+                <button 
+                    style="
+                        background:#e74c3c;
+                        border:none;
+                        padding:6px 10px;
+                        color:white;
+                        border-radius:5px;
+                        cursor:pointer;
+                    "
+                    onclick="eliminarUsuario(${index})"
+                >
+                    Eliminar
+                </button>
+            </li>
         `;
     });
 
-    // ---------------- BOTÓN LIMPIAR FORMULARIO ----------------
-    limpiarBtn.addEventListener("click", () => {
-        nombre.value = "";
-        email.value = "";
-        edad.value = "";
+    html += "</ul>";
+    cont.innerHTML = html;
+}
 
-        limpiarErrores();
-        resultado.textContent = "Formulario limpio.";
-    });
-
-    // ---------------- BOTÓN BORRAR ----------------
-    borrarBtn.addEventListener("click", () => {
-        localStorage.removeItem("usuario");
-        resultado.textContent = "Datos eliminados.";
-        limpiarErrores();
-    });
-
-    });
+// ========================================================
+// ELIMINAR USUARIO INDIVIDUAL
+// ========================================================
+function eliminarUsuario(indice) {
+    const usuarios = obtenerUsuarios();
+    usuarios.splice(indice, 1);
+    guardarUsuarios(usuarios);
+    renderUsuarios();
+}
