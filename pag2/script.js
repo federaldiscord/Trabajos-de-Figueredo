@@ -41,18 +41,23 @@ function validarInputs() {
     errorEmail.textContent = "";
     errorEdad.textContent = "";
 
-    if (nombre.value.trim() === "") {
-        errorNombre.textContent = "El nombre es obligatorio";
+    // Validar nombre
+    if (nombre.value.trim().length < 2) {
+        errorNombre.textContent = "Ingrese un nombre válido";
         valido = false;
     }
 
-    if (email.value.trim() === "" || !email.value.includes("@")) {
-        errorEmail.textContent = "Email inválido";
+    // Validar email con regex
+    const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!regexEmail.test(email.value.trim())) {
+        errorEmail.textContent = "Formato de email inválido";
         valido = false;
     }
 
-    if (edad.value.trim() === "" || edad.value <= 0) {
-        errorEdad.textContent = "Edad inválida";
+    // Validar edad
+    const edadNum = Number(edad.value);
+    if (!Number.isInteger(edadNum) || edadNum <= 0) {
+        errorEdad.textContent = "Edad debe ser un número positivo";
         valido = false;
     }
 
@@ -67,6 +72,7 @@ document.getElementById("guardar").addEventListener("click", () => {
     if (!validarInputs()) return;
 
     const usuarios = obtenerUsuarios();
+
     usuarios.push({
         nombre: nombre.value.trim(),
         email: email.value.trim(),
@@ -81,7 +87,7 @@ document.getElementById("guardar").addEventListener("click", () => {
 });
 
 // ========================================================
-// MOSTRAR / OCULTAR USUARIOS
+// MOSTRAR / OCULTAR USUARIOS (INVERTIDO)
 // ========================================================
 
 document.getElementById("ver").addEventListener("click", () => {
@@ -104,14 +110,14 @@ document.getElementById("ver").addEventListener("click", () => {
 document.getElementById("limpiar").addEventListener("click", limpiarFormulario);
 
 // ========================================================
-// BORRAR TODOS — CON ALERTA SI NO HAY USUARIOS
+// BORRAR TODOS — AHORA AVISA SI NO HAY USUARIOS
 // ========================================================
 
 document.getElementById("borrar").addEventListener("click", () => {
     const usuarios = obtenerUsuarios();
 
     if (usuarios.length === 0) {
-        alert("No hay usuarios para eliminar.");
+        alert("La lista está vacía, no hay usuarios por eliminar.");
         return;
     }
 
@@ -124,7 +130,7 @@ document.getElementById("borrar").addEventListener("click", () => {
 });
 
 // ========================================================
-// RENDER DE USUARIOS
+// RENDER DE USUARIOS — AHORA MUESTRA “LISTA VACÍA”
 // ========================================================
 
 function renderUsuarios() {
@@ -132,7 +138,7 @@ function renderUsuarios() {
     const cont = document.getElementById("resultado");
 
     if (usuarios.length === 0) {
-        cont.innerHTML = "";
+        cont.innerHTML = `<p style="padding:10px; color:#666;">La lista está vacía</p>`;
         return;
     }
 
