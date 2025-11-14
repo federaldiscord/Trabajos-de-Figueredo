@@ -18,7 +18,7 @@ function limpiarFormulario() {
     document.querySelectorAll(".error-msg").forEach(e => e.textContent = "");
 }
 
-// Estado para mostrar/ocultar
+// Control de visibilidad
 let usuariosVisibles = false;
 
 // ========================================================
@@ -36,6 +36,7 @@ function validarInputs() {
     const errorEmail = email.nextElementSibling;
     const errorEdad = edad.nextElementSibling;
 
+    // Reset
     errorNombre.textContent = "";
     errorEmail.textContent = "";
     errorEdad.textContent = "";
@@ -75,6 +76,7 @@ document.getElementById("guardar").addEventListener("click", () => {
     guardarUsuarios(usuarios);
 
     limpiarFormulario();
+
     if (usuariosVisibles) renderUsuarios();
 });
 
@@ -84,7 +86,6 @@ document.getElementById("guardar").addEventListener("click", () => {
 
 document.getElementById("ver").addEventListener("click", () => {
     usuariosVisibles = !usuariosVisibles;
-
     const cont = document.getElementById("resultado");
 
     if (usuariosVisibles) {
@@ -103,11 +104,22 @@ document.getElementById("ver").addEventListener("click", () => {
 document.getElementById("limpiar").addEventListener("click", limpiarFormulario);
 
 // ========================================================
-// BORRAR TODOS
+// BORRAR TODOS — CON ALERTA SI NO HAY USUARIOS
 // ========================================================
 
 document.getElementById("borrar").addEventListener("click", () => {
+    const usuarios = obtenerUsuarios();
+
+    if (usuarios.length === 0) {
+        alert("No hay usuarios para eliminar.");
+        return;
+    }
+
+    const confirmar = confirm("¿Seguro que deseas borrar todos los usuarios?");
+    if (!confirmar) return;
+
     localStorage.removeItem("usuarios");
+
     if (usuariosVisibles) renderUsuarios();
 });
 
@@ -148,25 +160,19 @@ function renderUsuarios() {
     });
 
     html += "</ul>";
-
     cont.innerHTML = html;
 }
 
 // ========================================================
-// BORRAR TODOS LOS DATOS (con alerta si no hay usuarios)
+// ELIMINAR USUARIO INDIVIDUAL
 // ========================================================
-document.getElementById("borrar").addEventListener("click", () => {
+
+function eliminarUsuario(indice) {
     const usuarios = obtenerUsuarios();
+    usuarios.splice(indice, 1);
+    guardarUsuarios(usuarios);
 
-    if (usuarios.length === 0) {
-        alert("No hay usuarios para eliminar.");
-        return;
+    if (usuariosVisibles) {
+        renderUsuarios();
     }
-
-    const confirmar = confirm("¿Seguro que deseas borrar todos los usuarios?");
-    if (!confirmar) return;
-
-    localStorage.removeItem("usuarios");
-
-    if (usuariosVisibles) renderUsuarios();
-});
+}
