@@ -1,76 +1,60 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const form = document.querySelector(".form");
-    const inputs = form.querySelectorAll("input[required]");
-    const registerBtn = document.getElementById("register-btn");
-    const logoutBtn = document.getElementById("logout-btn");
-    const successMsg = document.querySelector(".success-msg");
-    const progressBar = document.getElementById("progress-bar");
 
-    const validators = {
-        nombre: v => /^[A-Za-zÁÉÍÓÚáéíóúñÑ\s]+$/.test(v) || "Solo letras.",
-        apellido: v => /^[A-Za-zÁÉÍÓÚáéíóúñÑ\s]+$/.test(v) || "Solo letras.",
-        email: v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v) || "Correo inválido.",
-        password: v => v.length >= 6 || "Mínimo 6 caracteres."
+const nombre = document.getElementById("nombre");
+const email = document.getElementById("email");
+const edad = document.getElementById("edad");
+
+const guardarBtn = document.getElementById("guardar");
+const verBtn = document.getElementById("ver");
+const limpiarBtn = document.getElementById("limpiar");
+const borrarBtn = document.getElementById("borrar");
+
+const resultado = document.getElementById("resultado");
+
+guardarBtn.addEventListener("click", () => {
+    const user = {
+    nombre: nombre.value.trim(),
+    email: email.value.trim(),
+    edad: edad.value.trim()
     };
 
-    const validateField = input => {
-        const errorEl = input.nextElementSibling;
-        const result = validators[input.id]?.(input.value.trim());
-        if (result !== true) {
-        errorEl.textContent = result;
-        input.classList.add("invalid");
-        return false;
-        }
-        errorEl.textContent = "";
-        input.classList.remove("invalid");
-        return true;
-    };
+    if (!user.nombre || !user.email || !user.edad) {
+    resultado.textContent = "Por favor completa todos los campos.";
+    return;
+    }
 
-    const updateProgress = () => {
-        const filled = Array.from(inputs).filter(i => i.value.trim() !== "").length;
-        const progress = (filled / inputs.length) * 100;
-        progressBar.style.width = `${progress}%`;
-    };
+    localStorage.setItem("usuario", JSON.stringify(user));
+    resultado.textContent = "Usuario guardado correctamente.";
+});
 
-    const loadUser = () => {
-        const saved = JSON.parse(localStorage.getItem("user"));
-        if (saved) {
-        form.style.display = "none";
-        successMsg.textContent = `👋 Bienvenid@ ${saved.nombre} ${saved.apellido} (${saved.email})`;
-        logoutBtn.style.display = "block";
-        }
-    };
+verBtn.addEventListener("click", () => {
+    const stored = localStorage.getItem("usuario");
 
-    inputs.forEach(i => {
-        i.addEventListener("input", () => {
-        validateField(i);
-        updateProgress();
-        registerBtn.disabled = !Array.from(inputs).every(f => validateField(f));
-        });
-    });
+    if (!stored) {
+    resultado.textContent = "No hay usuarios guardados";
+    return;
+    }
 
-    form.addEventListener("submit", e => {
-        e.preventDefault();
-        const valid = Array.from(inputs).every(validateField);
-        if (!valid) return;
+const u = JSON.parse(stored);
+    resultado.innerHTML = `
+    <b>Usuario guardado:</b><br>
+    Nombre: ${u.nombre}<br>
+    Email: ${u.email}<br>
+    Edad: ${u.edad}
+    `;
+});
 
-        const userData = {};
-        inputs.forEach(i => userData[i.name] = i.value.trim());
-        localStorage.setItem("user", JSON.stringify(userData));
+limpiarBtn.addEventListener("click", () => {
+    nombre.value = "";
+    email.value = "";
+    edad.value = "";
+    resultado.textContent = "Formulario limpio.";
+});
 
-        successMsg.textContent = `✅ ¡Registro guardado! Bienvenid@ ${userData.nombre}`;
-        form.reset();
-        registerBtn.disabled = true;
-        updateProgress();
+  // Borrar datos
+borrarBtn.addEventListener("click", () => {
+    localStorage.removeItem("usuario");
+    resultado.textContent = "Datos eliminados.";
+});
 
-        setTimeout(() => location.reload(), 1000);
-    });
-
-    logoutBtn.addEventListener("click", () => {
-        localStorage.removeItem("user");
-        location.reload();
-    });
-
-    loadUser();
-    updateProgress();
-    });
+});
