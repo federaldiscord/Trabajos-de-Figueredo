@@ -153,12 +153,20 @@ function renderUsuarios() {
 }
 
 // ========================================================
-// BORRAR INDIVIDUAL
+// BORRAR TODOS LOS DATOS (con alerta si no hay usuarios)
 // ========================================================
-
-function eliminarUsuario(i) {
+document.getElementById("borrar").addEventListener("click", () => {
     const usuarios = obtenerUsuarios();
-    usuarios.splice(i, 1);
-    guardarUsuarios(usuarios);
-    renderUsuarios();
-}
+
+    if (usuarios.length === 0) {
+        alert("No hay usuarios para eliminar.");
+        return;
+    }
+
+    const confirmar = confirm("¿Seguro que deseas borrar todos los usuarios?");
+    if (!confirmar) return;
+
+    localStorage.removeItem("usuarios");
+
+    if (usuariosVisibles) renderUsuarios();
+});
