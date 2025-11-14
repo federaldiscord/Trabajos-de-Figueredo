@@ -2,30 +2,29 @@
 // UTILIDADES
 // ========================================================
 
-// Obtiene lista de usuarios desde localStorage
 function obtenerUsuarios() {
     return JSON.parse(localStorage.getItem("usuarios")) || [];
 }
 
-// Guarda lista completa de usuarios
 function guardarUsuarios(usuarios) {
     localStorage.setItem("usuarios", JSON.stringify(usuarios));
 }
 
-// Limpia el formulario y errores
 function limpiarFormulario() {
     document.getElementById("nombre").value = "";
     document.getElementById("email").value = "";
     document.getElementById("edad").value = "";
 
-    // limpiar errores
-    const errores = document.querySelectorAll(".error-msg");
-    errores.forEach(e => e.textContent = "");
+    document.querySelectorAll(".error-msg").forEach(e => e.textContent = "");
 }
+
+// Estado para mostrar/ocultar
+let usuariosVisibles = false;
 
 // ========================================================
 // VALIDACIONES
 // ========================================================
+
 function validarInputs() {
     let valido = true;
 
@@ -37,7 +36,6 @@ function validarInputs() {
     const errorEmail = email.nextElementSibling;
     const errorEdad = edad.nextElementSibling;
 
-    // reset mensajes previos
     errorNombre.textContent = "";
     errorEmail.textContent = "";
     errorEdad.textContent = "";
@@ -63,98 +61,104 @@ function validarInputs() {
 // ========================================================
 // GUARDAR USUARIO
 // ========================================================
+
 document.getElementById("guardar").addEventListener("click", () => {
     if (!validarInputs()) return;
 
-    const nombre = document.getElementById("nombre").value.trim();
-    const email = document.getElementById("email").value.trim();
-    const edad = document.getElementById("edad").value.trim();
-
     const usuarios = obtenerUsuarios();
+    usuarios.push({
+        nombre: nombre.value.trim(),
+        email: email.value.trim(),
+        edad: edad.value.trim()
+    });
 
-    usuarios.push({ nombre, email, edad });
     guardarUsuarios(usuarios);
 
     limpiarFormulario();
-    renderUsuarios();
+    if (usuariosVisibles) renderUsuarios();
 });
 
 // ========================================================
-// BOTÓN VER DATOS
+// MOSTRAR / OCULTAR USUARIOS
 // ========================================================
-document.getElementById("ver").addEventListener("click", renderUsuarios);
+
+document.getElementById("ver").addEventListener("click", () => {
+    usuariosVisibles = !usuariosVisibles;
+
+    const cont = document.getElementById("resultado");
+
+    if (usuariosVisibles) {
+        renderUsuarios();
+        document.getElementById("ver").textContent = "Ocultar Usuarios";
+    } else {
+        cont.innerHTML = "";
+        document.getElementById("ver").textContent = "Mostrar Usuarios";
+    }
+});
 
 // ========================================================
-// BOTÓN LIMPIAR FORMULARIO
+// LIMPIAR FORMULARIO
 // ========================================================
+
 document.getElementById("limpiar").addEventListener("click", limpiarFormulario);
 
 // ========================================================
-// BORRAR TODOS LOS DATOS
+// BORRAR TODOS
 // ========================================================
+
 document.getElementById("borrar").addEventListener("click", () => {
     localStorage.removeItem("usuarios");
-    renderUsuarios();
+    if (usuariosVisibles) renderUsuarios();
 });
 
 // ========================================================
-// RENDERIZAR LISTA DE USUARIOS CON BOTÓN INDIVIDUAL
+// RENDER DE USUARIOS
 // ========================================================
+
 function renderUsuarios() {
     const usuarios = obtenerUsuarios();
     const cont = document.getElementById("resultado");
 
     if (usuarios.length === 0) {
-        cont.innerHTML = "No hay usuarios guardados";
+        cont.innerHTML = "";
         return;
     }
 
-    let html = "<ul style='list-style:none; padding:0;'>";
+    let html = `<ul class="user-list">`;
 
     usuarios.forEach((u, index) => {
+        const inicial = u.nombre.charAt(0).toUpperCase();
+
         html += `
-            <li style="
-                margin-bottom: 12px;
-                background: white;
-                padding: 10px;
-                border-radius: 6px;
-                box-shadow: 0 2px 5px rgba(0,0,0,0.08);
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-            ">
-                <div>
-                    <strong>${u.nombre}</strong> <br>
-                    ${u.email} — ${u.edad} años
+            <li class="user-card">
+                <div class="user-avatar">${inicial}</div>
+
+                <div class="user-info">
+                    <div class="user-name">${u.nombre}</div>
+                    <div class="user-email">${u.email} — ${u.edad} años</div>
                 </div>
 
-                <button 
-                    style="
-                        background:#e74c3c;
-                        border:none;
-                        padding:6px 10px;
-                        color:white;
-                        border-radius:5px;
-                        cursor:pointer;
-                    "
-                    onclick="eliminarUsuario(${index})"
-                >
-                    Eliminar
+                <button class="delete-icon" onclick="eliminarUsuario(${index})">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M3 6h18M9 6v12m6-12v12M4 6l1 14c0 .55.45 1 1 1h12c.55 0 1-.45 1-1l1-14H4zM10 2h4l1 2H9l1-2z"/>
+                    </svg>
                 </button>
             </li>
         `;
     });
 
     html += "</ul>";
+
     cont.innerHTML = html;
 }
 
 // ========================================================
-// ELIMINAR USUARIO INDIVIDUAL
+// BORRAR INDIVIDUAL
 // ========================================================
-function eliminarUsuario(indice) {
+
+function eliminarUsuario(i) {
     const usuarios = obtenerUsuarios();
-    usuarios.splice(indice, 1);
+    usuarios.splice(i, 1);
     guardarUsuarios(usuarios);
     renderUsuarios();
 }

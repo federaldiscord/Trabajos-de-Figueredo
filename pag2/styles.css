@@ -160,3 +160,75 @@ button:disabled {
     border-left: 4px solid var(--color-primary);
     font-size: 0.95rem;
 }
+
+/* =============================
+   LISTA DE USUARIOS
+   ============================= */
+.user-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.user-card {
+    background: white;
+    padding: 14px 16px;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    display: flex;
+    align-items: center;
+    margin-bottom: 12px;
+    gap: 12px;
+    transition: transform 0.2s ease;
+}
+
+.user-card:hover {
+    transform: translateY(-2px);
+}
+
+.user-avatar {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: var(--color-primary);
+    color: white;
+    font-weight: 700;
+    font-size: 1.2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.user-info {
+    flex: 1;
+    line-height: 1.25;
+}
+
+.user-name {
+    font-weight: 700;
+    color: var(--color-text);
+}
+
+.user-email {
+    font-size: 0.85rem;
+    color: #555;
+}
+
+.delete-icon {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 6px;
+    border-radius: 5px;
+    transition: background 0.2s ease;
+}
+
+.delete-icon:hover {
+    background: rgba(231, 76, 60, 0.1);
+}
+
+.delete-icon svg {
+    width: 18px;
+    height: 18px;
+    fill: var(--color-danger);
+}
