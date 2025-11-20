@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Café Aurora</title>
+    <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+
+    <!-- Encabezado -->
+    <header class="header">
+        <h1>Café Aurora</h1>
+        <p>El mejor café artesanal de Cundinamarca.</p>
+        <button id="abrirModal" class="btn-open">Suscríbete</button>
+    </header>
+
+    <!-- Sección principal -->
+    <section class="productos">
+        <h2>Nuestros Productos</h2>
+        <div class="grid">
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1511920170033-f8396924c348?q=80&w=600" alt="Café Latte">
+                <h3>Café Latte</h3>
+                <p>Café suave con leche espumosa.</p>
+            </div>
+
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?q=80&w=600" alt="Capuccino">
+                <h3>Capuccino</h3>
+                <p>Aromático, intenso y cremoso.</p>
+            </div>
+
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1572441710534-680f9c823c34?q=80&w=600" alt="Cold Brew">
+                <h3>Cold Brew</h3>
+                <p>Refrescante y preparado en frío.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Overlay blur -->
+    <div id="overlay" class="overlay"></div>
+
+    <!-- Modal -->
+    <div class="modal" id="miModal">
+        <div class="modal-contenido">
+
+            <span class="cerrar-btn" id="cerrarModal">&times;</span>
+
+            <img 
+                src="https://img.freepik.com/vector-gratis/circulo-azul-usuario-blanco_78370-4707.jpg?semt=ais_hybrid&w=740&q=80" 
+                alt="Imagen usuario" 
+                class="user-image"
+            >
+
+            <h2>Suscríbete</h2>
+            <p>Recibe ofertas, novedades y cupones exclusivos.</p>
+
+            <form class="modal-form">
+                <input type="email" placeholder="Tu correo electrónico" required />
+                <button type="submit">Suscribirse</button>
+            </form>
+
+            <p class="modal-footer">
+                Al suscribirte aceptas recibir correos promocionales. Puedes cancelar cuando quieras.
+            </p>
+
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
