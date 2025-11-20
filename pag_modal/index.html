@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+    <title>Página Modales</title>
+</head>
+<body>
+
+    <button id="abrirModal" class="btn-open">Abrir modal</button>
+
+    <div id="overlay" class="overlay"></div>
+
+    <div class="modal" id="miModal">
+        <div class="modal-contenido">
+            <img src="https://img.freepik.com/vector-gratis/circulo-azul-usuario-blanco_78370-4707.jpg?semt=ais_hybrid&w=740&q=80" 
+                alt="Imagen de Usuario" 
+                class="user-image">
+
+            <span class="cerrar-btn" id="cerrarModal">&times;</span>
+
+            <h2>Suscríbete</h2>
+            <p>Suscríbete para recibir lo mejor de nuestras actualizaciones.</p>
+
+            <form class="modal-form">
+                <input type="email" placeholder="Tu correo electrónico" required />
+                <button type="submit">Suscribirse</button>
+            </form>
+
+            <p class="modal-footer">
+                Al suscribirte, aceptas recibir correos electrónicos con nuestras últimas
+                noticias y ofertas. Puedes darte de baja en cualquier momento.
+            </p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

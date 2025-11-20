@@ -1,0 +1,55 @@
+
+.overlay {
+    position: fixed;
+    inset: 0;
+    backdrop-filter: blur(6px);
+    background: rgba(0, 0, 0, 0.4);
+    display: none;
+    z-index: 10;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    justify-content: center;
+    align-items: center;
+    z-index: 20;
+}
+
+.modal-contenido {
+    background: #fff;
+    padding: 25px;
+    border-radius: 10px;
+    width: 80%;
+    max-width: 380px;
+    position: relative;
+}
+
+.cerrar-btn {
+    position: absolute;
+    top: 8px;
+    right: 12px;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.user-image {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+}
+
+.btn-open {
+    margin: 30px;
+    padding: 12px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-open:hover {
+    background-color: #45a049;
+}
