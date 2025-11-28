@@ -155,12 +155,14 @@ body{
     padding:84px 20px 48px;
     position:relative;
     overflow:visible;
+    z-index: 10;
 }
 .hero h1{
     font-size: clamp(1.8rem, 4.6vw, 3.2rem);
     margin:0 0 10px;
     color:var(--text);
     font-weight:800;
+    font-size: 48px;
     letter-spacing: -0.6px;
     opacity:0;
     transform: translateY(8px);
@@ -171,6 +173,7 @@ body{
     margin:0 auto 22px;
     color:var(--muted);
     font-weight:500;
+    font-size: 20px;
     opacity:0;
     transform: translateY(8px);
     animation: fadeUp 700ms 300ms forwards var(--ease);
@@ -202,6 +205,7 @@ body{
     position:relative;
     box-shadow: 0 12px 40px rgba(3,8,25,0.6);
     background: linear-gradient(180deg, rgba(6,18,40,0.55), rgba(3,8,20,0.3));
+    z-index: 1;
 }
 
 /* El track no necesita cambios */
@@ -354,11 +358,6 @@ body{
     opacity: 0;
     transform: translateY(10px) scale(0.96);
     animation: none !important;
-}
-
-@keyframes popIn {
-    0% { transform: scale(0.8) translateY(20px); opacity: 0; }
-    100% { transform: scale(1) translateY(0); opacity: 1; }
 }
 
 .close-modal {
